@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sfzpkg"
+version = "1.0.0"
+description = "Pack, convert and inspect FIZZY ORANGE SFZ instrument packages"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "Apache-2.0" }
+authors = [{ name = "FIZZY ORANGE contributors" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.scripts]
+sfzpkg = "sfzpkg.__main__:main"
+
+[tool.setuptools]
+packages = ["sfzpkg"]
+
+[tool.setuptools.package-data]
+sfzpkg = []

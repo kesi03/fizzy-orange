@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FIZZY ORANGE · SFZ editor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <svg class="bottle" viewBox="0 0 96 108" aria-hidden="true">
+    <path d="M38 4h20v14c0 7 11 11 11 24v52a10 10 0 0 1-10 10H37a10 10 0 0 1-10-10V42c0-13 11-17 11-24Z"
+          fill="#ff8a1f" stroke="#ffc857" stroke-width="3"/>
+    <rect x="36" y="1" width="24" height="8" rx="2" fill="#ffc857"/>
+    <rect x="27" y="54" width="42" height="30" rx="3" fill="#21140b"/>
+    <path d="M33 77 Q48 60 63 77" fill="none" stroke="#ffc857" stroke-width="2"/>
+    <circle cx="40" cy="70" r="4" fill="#ff8a1f"/><circle cx="52" cy="65" r="3" fill="#ffc857"/>
+    <circle cx="57" cy="76" r="2.5" fill="#ff8a1f"/>
+    <circle cx="27" cy="86" r="3" fill="#ffc857" opacity=".8"/>
+    <circle cx="70" cy="90" r="4" fill="#ff8a1f" opacity=".8"/>
+    <circle cx="22" cy="34" r="2.5" fill="#ffc857" opacity=".7"/>
+  </svg>
+  <div class="brand">
+    <div class="kicker">Vibe FM · SFZ sample player</div>
+    <h1>FIZZY ORANGE</h1>
+    <p>sparkling samples · rack edition · 64 files / 32 voices</p>
+  </div>
+  <div class="badge">PLAYS<br>WITHOUT<br>THIS PAGE</div>
+</header>
+
+<div class="statusbar" role="status" aria-live="polite">
+  <span id="status">waking up the rack…</span>
+  <span class="pill" id="pkg-pill">PKG —</span>
+  <span class="pill" id="sel-pill">SEL —</span>
+  <span class="pill" id="octave-pill">OCT —</span>
+  <span class="pill" id="busy-pill">IDLE</span>
+</div>
+
+<div class="layout">
+
+  <section class="panel">
+    <h2>A · Package <small>drop a ZIP or pick loose files</small></h2>
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Drop package files here or click to choose files">
+      <b>DROP .zip / .sfz / SAMPLES HERE</b>
+      <span>click to choose files · .zip · .sfz · .json · wav · mp3 · flac · ogg · aif</span>
+      <input type="file" id="file" accept=".zip,.sfz,.json,.wav,.mp3,.flac,.ogg,.aif,.aiff,audio/*" multiple>
+    </div>
+    <div class="meter"><div id="bar"></div></div>
+    <div class="row">
+      <span id="progress" class="progress">Idle · stored ZIPs need no audio decoder.</span>
+      <span id="count" class="tag">0 / 64 slots</span>
+    </div>
+    <div class="row">
+      <button id="refresh" class="hot">REFRESH</button>
+      <button id="panic">PANIC</button>
+    </div>
+    <h3>Load from media</h3>
+    <div class="row">
+      <input type="text" id="path" placeholder="sd/samples/piano/ or usb/fizzy/piano.zip" aria-label="Unpacked package path">
+      <button id="load">LOAD PATH</button>
+    </div>
+    <p class="note">A path starts with a source key from the device FILES page. The firmware reads the files; this page only sends the path.</p>
+    <h3>Files on the device</h3>
+    <div class="listbox files" id="files"><div class="empty">no files reported</div></div>
+  </section>
+
+  <section class="panel">
+    <h2>B · Sounds <small>select, audition, inspect</small></h2>
+    <div class="fields">
+      <label>Instrument
+        <select id="instr"><option value="0">(none)</option></select>
+      </label>
+      <label>Preset
+        <select id="preset"><option value="0">(none)</option></select>
+      </label>
+    </div>
+    <div class="row">
+      <label class="small-label" for="audition-note">Audition note</label>
+      <input type="number" id="audition-note" min="0" max="127" value="60" aria-label="Audition MIDI note">
+      <label class="small-label" for="velocity">Velocity</label>
+      <input type="range" id="velocity" min="1" max="127" value="96" aria-label="Audition velocity">
+      <output id="velocity-out" for="velocity">96</output>
+      <button id="audition" class="hot">AUDITION</button>
+    </div>
+    <h3>Samples</h3>
+    <div class="listbox" id="samples"><div class="empty">no samples reported</div></div>
+    <h3>Firmware log</h3>
+    <div class="listbox log" id="log"><div class="empty">waiting for status…</div></div>
+  </section>
+
+  <section class="panel mix">
+    <h2>C · Voice &amp; display <small>every knob comes from the firmware</small></h2>
+    <div class="mix-body">
+      <div class="grid" id="params"></div>
+      <div class="screen">
+        <canvas id="display" width="480" height="320" aria-label="Device display"></canvas>
+        <span>DEVICE DISPLAY · 480 × 320</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel keys-panel">
+    <h2>D · Keys <small>C3 – C5 · drag or tap</small></h2>
+    <div class="keys" id="keys"></div>
+    <p class="note">Keys use the same note path as MIDI and the hardware. The firmware keeps the sound alive with the Editor closed.</p>
+  </section>
+
+</div>
+
+<footer>FIZZY ORANGE · built with the VIBE FM SDK · the firmware stays fully playable without this page</footer>
+
+<script src="vibe-editor.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

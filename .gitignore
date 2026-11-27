@@ -1,0 +1,22 @@
+# SDK build output
+sdk/build/
+sdk/zig-out/
+sdk/zig-cache/
+
+# scripted test output
+build/
+test-out/
+out/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# local Windows python3 shim (created by scripts/build.ps1)
+tools/shim/
+
+# editor/OS noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.log

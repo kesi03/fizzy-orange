@@ -1,0 +1,1 @@
+{"id":"fizzy-orange","name":"FIZZY ORANGE","version":"1.0.0","author":"keste","description":"An SFZ sample player for VIBE FM: load a ZIP of samples and SFZ presets from the card or USB, browse patches, and play them from the keys and pads with velocity, polyphony and simple effects.","license":"Apache-2.0","protocol":7}
